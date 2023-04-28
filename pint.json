@@ -1,0 +1,29 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "ordered_imports": false,
+        "simplified_null_return": true,
+        "braces": false,
+        "class_definition": false,
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        },
+        "curly_braces_position": {
+            "functions_opening_brace": "next_line_unless_newline_at_signature_end",
+            "classes_opening_brace": "next_line_unless_newline_at_signature_end"
+        }
+    },
+    "exclude": [
+        "app/Exceptions",
+        "app/Http/Controllers/Auth",
+        "app/Http/Middleware",
+        "app/Providers",
+        "config",
+        "bootstrap",
+        "database",
+        "lang",
+        "public",
+        "tests"
+    ]
+}
