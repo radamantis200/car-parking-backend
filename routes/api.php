@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Vehicle\VehicleController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
+use App\Http\Controllers\Api\V1\Zone\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('profile', [ProfileController::class, 'update']);
     Route::put('password', PasswordUpdateController::class);
 
-    Route::apiResource('vehicle', VehicleController::class);
+    Route::apiResource('vehicles', VehicleController::class);
+    Route::apiResource('zones', ZoneController::class)->only(['index']);
 });
