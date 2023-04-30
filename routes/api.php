@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Zone\ZoneController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Vehicle\VehicleController;
+use App\Http\Controllers\Api\V1\Parking\ParkingController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
-use App\Http\Controllers\Api\V1\Zone\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('vehicles', VehicleController::class);
     Route::apiResource('zones', ZoneController::class)->only(['index']);
+    Route::post('parkings/start', [ParkingController::class, 'start']);
+    Route::get('parkings/{parking}', [ParkingController::class, 'show']);
+    Route::put('parkings/{parking}', [ParkingController::class, 'stop']);
 });
