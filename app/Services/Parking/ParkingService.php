@@ -3,12 +3,13 @@
 namespace App\Services\Parking;
 
 use App\Models\Parking;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Parking\ParkingResource;
 
 class ParkingService
 {
-    public function start_parking(array $request)
+    public function start_parking(array $request): JsonResponse|ParkingResource
     {
         if (Parking::active()->where('vehicle_id', $request['vehicle_id'])->exists()) {
             return response()->json([
@@ -22,12 +23,12 @@ class ParkingService
         return ParkingResource::make($parking);
     }
 
-    public function show(Parking $parking)
+    public function show(Parking $parking): ParkingResource
     {
         return ParkingResource::make($parking);
     }
 
-    public function stop_parking(Parking $parking)
+    public function stop_parking(Parking $parking): JsonResponse|ParkingResource
     {
         if ($parking->stop_time) {
             return response()->json(
