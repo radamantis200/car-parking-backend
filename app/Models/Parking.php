@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Parking extends Model
@@ -18,12 +19,12 @@ class Parking extends Model
         'stop_time' => 'datetime',
     ];
 
-    public function zone()
+    public function zone(): BelongsTo
     {
         return $this->belongsTo(Zone::class);
     }
 
-    public function vehicle()
+    public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);
     }
@@ -38,7 +39,7 @@ class Parking extends Model
         return $query->whereNotNull('stop_time');
     }
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope('user', function (Builder $builder) {
             $builder->where('user_id', auth()->id());

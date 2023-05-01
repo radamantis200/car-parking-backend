@@ -14,7 +14,7 @@ class Vehicle extends Model
 
     protected $fillable = ['user_id', 'plate_number'];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope('user', function (Builder $builder) {
             $builder->where('user_id', auth()->id());
