@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -11,7 +12,7 @@ use App\Http\Requests\UserRequest\StoreUserRequest;
 
 class RegisterController extends Controller
 {
-    public function __invoke(StoreUserRequest $request)
+    public function __invoke(StoreUserRequest $request): JsonResponse
     {
         $user = User::create([
             'name' => $request->name,

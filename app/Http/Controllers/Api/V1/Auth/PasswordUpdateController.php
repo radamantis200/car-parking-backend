@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rules\Password;
+use Symfony\Component\HttpFoundation\Response as Status;
 
 class PasswordUpdateController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $request->validate([
             'current_password' => ['required', 'current_password'],
@@ -26,6 +27,6 @@ class PasswordUpdateController extends Controller
 
         return response()->json([
             'message' => 'Your password has been updated.',
-        ], Response::HTTP_ACCEPTED);
+        ], Status::HTTP_ACCEPTED);
     }
 }

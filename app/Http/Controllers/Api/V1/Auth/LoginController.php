@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
@@ -10,7 +11,7 @@ use App\Http\Requests\UserRequest\LoginUserRequest;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginUserRequest $request)
+    public function __invoke(LoginUserRequest $request): JsonResponse
     {
         $user = User::where('email', $request->email)->first();
 
