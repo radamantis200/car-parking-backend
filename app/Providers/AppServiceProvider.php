@@ -7,6 +7,7 @@ use App\Models\Vehicle;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\Parking\ParkingObserver;
 use App\Observers\Vehicle\VehicleObserver;
+use Illuminate\Database\Eloquent\Model;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Model::preventLazyLoading(! app()->isProduction());
         Vehicle::observe(VehicleObserver::class);
         Parking::observe(ParkingObserver::class);
     }
